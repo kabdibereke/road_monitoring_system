@@ -1,0 +1,37 @@
+.button {
+    display: flex;
+    border-radius: 8px;
+    width: fit-content;
+    padding: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.ghost {
+    background: transparent;
+    color: #274C77;
+    transition: 0.6s;
+    border: 1px solid #274C77;
+    &:hover {
+        transition: 0.6s;
+        background:#d6dbe0;
+    }
+    
+}
+
+.primary {
+    background: #274C77;
+    color: #F8F8FB;
+    transition: 0.6s;
+    &:hover {
+        transition: 0.6s;
+        background:#51667e;
+    }
+    
+}

@@ -1,0 +1,32 @@
+.wrapper {
+    width: 264px;
+    height: 156px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: space-between;
+    word-break: break-all;
+    background: #F8F8FB;
+    box-shadow: 0px 20.2109px 40.4219px -6.73698px rgba(39, 76, 119, 0.16);
+    border-radius: 16.8424px;
+    .title {
+
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+       
+        color: #274C77;
+    }
+}
+
+
+
+@media (max-width:557px) {
+    .wrapper {
+        width: 100%;
+      
+    }
+    
+    
+    
+}

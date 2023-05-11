@@ -1,0 +1,86 @@
+.btns {
+    margin-top: 20px;
+}
+
+.wrapper {
+   
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 10px;
+    .table{
+        min-width: 764px;
+        display: table;
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0px;
+        
+        background: #F8F8FB;
+        height: fit-content;
+        box-shadow: 0px 20.2109px 40.4219px -6.73698px rgba(39, 76, 119, 0.16);
+        margin: 20px 0 ;
+        thead {
+            tr {
+                th {    
+                    padding: 20px 10px;  
+                    background-color: #194374;
+                    text-align: right;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 14px;               
+                    color: #E7ECEF;
+      
+                    &:first-child {
+                        text-align: left;
+                        border-top-left-radius:5px;
+                    }
+                    &:last-child {
+                        border-top-right-radius:5px;
+                    
+                    }
+                    
+                    
+                }
+            }
+        }
+        tbody {
+            tr {
+                &:nth-child(odd) {background: rgba(0, 0, 0, 0.04)}
+                &:nth-child(even) {background: #FFF}
+                .th {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    .icon {
+                        cursor: pointer;
+                    }
+                }
+                th,td {  
+                    
+                    padding: 20px 10px;  
+                    text-align: right;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 14px;               
+                    color: black;
+                    &:first-child {
+                        text-align: left;
+                    }
+                }
+                td {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.btns {
+    display: flex;
+    gap: 10px;
+}
+
+@media(max-width: 921px) {
+    .wrapper {
+        overflow-x: scroll  ;
+    }
+}
