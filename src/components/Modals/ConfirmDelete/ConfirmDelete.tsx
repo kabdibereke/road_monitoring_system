@@ -5,10 +5,11 @@ import styles from './ConfirmDelete.module.scss'
 import { IOpenModal } from '../../../interface/interface';
 interface IDeleteModal extends IOpenModal {
     deleteGraphic: () => void;
+    text:string
 
 }
 
-const ConfirmDelete = ({setIsOpen,isOpen,deleteGraphic}: IDeleteModal) => {
+const ConfirmDelete = ({setIsOpen,isOpen,deleteGraphic,text}: IDeleteModal) => {
 
     const handleDelete =()=> {
         deleteGraphic()  
@@ -17,7 +18,7 @@ const ConfirmDelete = ({setIsOpen,isOpen,deleteGraphic}: IDeleteModal) => {
   return (
     <Modal setOpen={setIsOpen} open={isOpen}>
         <>
-            <p className={styles.title}>Вы дейтивительно хотите удалить данный график</p>
+            <p className={styles.title}>{text}</p>
             <Button className={styles.btn} onClick={handleDelete} appearance="primary">Удалить</Button>
             <Button className={styles.btn} onClick={()=>setIsOpen(false)} appearance="ghost">Отмена</Button>
         </>

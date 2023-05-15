@@ -12,12 +12,13 @@ import { IFormInputs, IOpenModal } from '../../../interface/interface';
 
 
 const SignIn = ({setIsOpen,isOpen}: IOpenModal) => {
-    const [checkError,setCheckError]= useState(false)
     const [
-        signInWithEmailAndPassword,
-        user,
-        error
-      ] = useSignInWithEmailAndPassword(auth);
+      signInWithEmailAndPassword,
+      user,
+      loading,
+      error,
+    ] = useSignInWithEmailAndPassword(auth);
+  
     const { register, formState: { errors }, handleSubmit,reset } = useForm<IFormInputs>();
  
     const onSubmit: SubmitHandler<IFormInputs> = async (data)=> {
@@ -25,14 +26,6 @@ const SignIn = ({setIsOpen,isOpen}: IOpenModal) => {
        
     }
     
-    useEffect(()=> {
-        if(error) {
-            setCheckError(error)
-            setTimeout(()=> {
-                setCheckError(false)
-            },3000)
-        }
-    },[error])
     useEffect(()=> {
         if(user) {
           reset()
@@ -43,13 +36,15 @@ const SignIn = ({setIsOpen,isOpen}: IOpenModal) => {
     <Modal setOpen={setIsOpen} open={isOpen}>
        
         <form onSubmit={handleSubmit(onSubmit)}>
-            {checkError && <ErrorInputMessage >Неправильный логин и/или пароль</ErrorInputMessage>}
+            {error && <ErrorInputMessage >{error.message.substring(10)}</ErrorInputMessage>}
+            <p>test@test.com</p>
+            <p>qwerty</p>
             <Input error={errors.email}  name={"email"} register ={register} placeholder={'test@test.com'}  title={'Email'} parametrs ={{ required: "Заполните  поле", pattern: {
               value: /\S+@\S+\.\S+/,
               message: "Некорректный Email"
             } }}  type={'text'}/>
             {errors.email && <ErrorInputMessage>{errors.email.message}</ErrorInputMessage>}
-            <Input error={errors.password}   name={"password"} register ={register} placeholder={'password'}  title={'Пароль'} parametrs ={{ required: true, maxLength: 80 }}  type={'text'}/>
+            <Input error={errors.password}    name={"password"} register ={register} placeholder={'qwerty'}  title={'Пароль'} parametrs ={{ required: true, maxLength: 80 }}  type={'text'}/>
             {errors.password && <ErrorInputMessage>Заполните  поле</ErrorInputMessage>}
             <Button className={styles.btn} appearance='primary' type='submit'>Войти</Button>
         </form>

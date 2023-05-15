@@ -10,6 +10,7 @@ import AddConstructive from '../Modals/AddConstructive/AddConstructive'
 import { VscChromeClose } from 'react-icons/vsc'
 import TableInput from '../../ui/TableInput/TableInput'
 import { IConstructive } from '../../interface/interface'
+import { motion } from 'framer-motion'
 
 
 
@@ -43,7 +44,10 @@ const Table = () => {
       ><Button appearance='primary'>Скачать Excel</Button></DownloadTableExcel>
      {user &&   <Button appearance='ghost' onClick={()=>setOpenModal(true)}>Добавить конструктив</Button>}
     </div>
-   <div className={styles.wrapper}>
+   <motion.div className={styles.wrapper}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.2 }}>
    <table className={styles.table} ref={tableRef}>
         <thead >
             <tr >
@@ -92,7 +96,7 @@ const Table = () => {
             })}
         </tbody>
     </table>
-   </div>
+   </motion.div>
     <AddConstructive setIsOpen={setOpenModal} isOpen={openModal}/>
     </>
   )

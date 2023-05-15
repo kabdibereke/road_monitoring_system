@@ -10,6 +10,7 @@ import { VscChromeClose } from 'react-icons/vsc'
 import TableInput from '../../ui/TableInput/TableInput'
 import AddMaterial from '../Modals/AddMaterial/AddMaterial'
 import { IMaterial } from '../../interface/interface'
+import { motion } from 'framer-motion'
 
 
 const TableMaterial = () => {
@@ -42,7 +43,10 @@ const TableMaterial = () => {
       ><Button appearance='primary'>Скачать Excel</Button></DownloadTableExcel>
       {user &&  <Button appearance='ghost' onClick={()=>setOpenModal(true)}>Добавить материал</Button>}
     </div>
-    <div className={styles.wrapper}>
+    <motion.div className={styles.wrapper}
+       initial={{ opacity: 0, scale: 0.5 }}
+       animate={{ opacity: 1, scale: 1 }}
+       transition={{ duration: 0.2 }}>
     <table className={styles.table} ref={tableRef}>
         <thead >
             <tr >
@@ -80,7 +84,7 @@ const TableMaterial = () => {
             })}
         </tbody>
     </table>
-    </div>
+    </motion.div>
     <AddMaterial setIsOpen={setOpenModal} isOpen={openModal}/>
     </>
   )

@@ -7,12 +7,15 @@ import { useLocation } from 'react-router-dom'
 import { VscChromeClose } from 'react-icons/vsc'
 import ConfirmDelete from '../Modals/ConfirmDelete/ConfirmDelete'
 import { IGraphic } from '../../interface/interface'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { motion } from 'framer-motion'
 
 
 const Graphic = () => {
     const [graphic, setGraphic]= useState<IGraphic>({})
     const [openModal, setOpenModal] = useState(false);
     const {pathname} = useLocation()
+    const [user, loading, error] = useAuthState(auth);
     useEffect(() => {
 		try {
             onValue(ref(db), (snapshot) => {
@@ -36,7 +39,11 @@ const Graphic = () => {
     <>
     {graphic? Object.keys(graphic).map((main,index)=> {
         return (
-            <div key={index} className={styles.wrapper}>
+            <motion.div key={index} className={styles.wrapper}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.2 }}
+           >
                 <div className={styles.names_wrapper}>
                     {Object.values(graphic).map((b,i)=> {
                         if(i==index) {
@@ -55,7 +62,7 @@ const Graphic = () => {
                         <p className={styles.title}>
                             {main.substring(14)}
                         </p>
-                        <VscChromeClose className={styles.delete_icon} onClick={()=>setOpenModal(true)}/>
+                       {user &&  <VscChromeClose className={styles.delete_icon} onClick={()=>setOpenModal(true)}/>}
                     </div>
                     <div className={styles.count_wrapper}>
                         {Object.values(graphic).map((b,i)=> {
@@ -94,8 +101,8 @@ const Graphic = () => {
                         }
                     })}
                 </div>
-                <ConfirmDelete setIsOpen={setOpenModal} isOpen={openModal} deleteGraphic={()=>deleteGraphic(main)}/>
-            </div>)}): ''}
+                <ConfirmDelete text={'Вы действительно хотите удалить данный график'} setIsOpen={setOpenModal} isOpen={openModal} deleteGraphic={()=>deleteGraphic(main)}/>
+            </motion.div>)}): ''}
             
     </>
     
