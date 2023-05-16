@@ -29,13 +29,17 @@ const AddMaterial = ({setIsOpen,isOpen}: IOpenModal) => {
             type: materialName+' '+materialType,
             unit: unitType,
         })
-        if(materialName == 'Щебень') setMaterialType(rubbles[0])
-        if(materialName == 'Цемент') setMaterialType(cement[0])
-        if(materialName == 'Битум') setMaterialType(bitum[0])
+       
 
     },[unitType,materialName,materialType])
 
+    useEffect(()=> {
+        if(materialName == 'Щебень') setMaterialType(rubbles[0])
+        if(materialName == 'Цемент') setMaterialType(cement[0])
+        if(materialName == 'Битум') setMaterialType(bitum[0])
+    },[materialName])
 
+    
     const onSubmit = async ()=> {
         try {
             await set(ref(db, `${pathname.substring(1)}/material/` + id), materialPush);
