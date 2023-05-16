@@ -12,15 +12,38 @@ interface Props {
   
     initialValue:number
     value1:string,
-    value2: string
+    value2: string,
+    value3?:number | string| null,
+    reset?:boolean
 }
 
-const TableInput = ({initialValue, value1, value2, ...props}:Props ) => {
+const TableInput = ({initialValue, value1, value2, value3=null, reset=false,...props}:Props ) => {
     const [isActive, setIsActive]= useState(false)
     const [text, setText] = useState('')
     const [user, loading, error] = useAuthState(auth);
     const {pathname} = useLocation()
-   
+    useEffect(() => {
+            if(reset) {
+                const interval = setInterval(() => {
+                    const currentDate = new Date();
+                    const currentHours = currentDate.getHours();
+                    const currentMinutes = currentDate.getMinutes();
+                    if (currentHours === 0 && currentMinutes === 0) {
+                        if(typeof value3 =='string') {
+                            update(ref(db, `${pathname.substring(1)}/${value1}`), {
+                                [value2]: 0
+                            });
+                        }
+                        if(typeof value3 =='number') {
+                            update(ref(db, `${pathname.substring(1)}/${value1}`), {
+                                [value2]: value3
+                            });
+                        }
+                    }
+                  }, 1000); 
+                  return () => clearInterval(interval); 
+            }
+      }, []);
     useEffect(()=>{
         if(initialValue) {
             setText(initialValue.toString())

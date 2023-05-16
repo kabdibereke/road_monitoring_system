@@ -22,9 +22,8 @@ const AddMaterial = ({setIsOpen,isOpen}: IOpenModal) => {
         setMaterialPush({
             id:id,
             done: 0,
-            doneOnDay: 0,
-            doneOnYear: 0,
-            planOnYear: 0,
+            today: 0,
+            yesterday: 0,
             project: 0,
             type: materialName+' '+materialType,
             unit: unitType,
@@ -37,17 +36,15 @@ const AddMaterial = ({setIsOpen,isOpen}: IOpenModal) => {
         if(materialName == 'Щебень') setMaterialType(rubbles[0])
         if(materialName == 'Цемент') setMaterialType(cement[0])
         if(materialName == 'Битум') setMaterialType(bitum[0])
+        if(materialName != 'Битум' && materialName != 'Цемент' && materialName != 'Щебень' ) setMaterialType('')
     },[materialName])
 
-    
+
     const onSubmit = async ()=> {
         try {
             await set(ref(db, `${pathname.substring(1)}/material/` + id), materialPush);
             setId(new Date().getTime())
             setMaterialPush({} as IMaterial)
-            setMaterialType('')
-            setMaterialName('')
-            setUnitType('')
             toast.success('Материал добавлен', {autoClose: 1000});
             setIsOpen(false)
         } catch (error:any) {
@@ -67,7 +64,6 @@ const AddMaterial = ({setIsOpen,isOpen}: IOpenModal) => {
                 <Dropdown selected={unitType} setSelected={setUnitType} type={unit}/>
                 <Button className={styles.btn} appearance='primary' onClick={onSubmit}>Добавить</Button>
             </div>
-    
         </Modal>
     )
 }

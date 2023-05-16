@@ -46,7 +46,7 @@ const SignIn = ({setIsOpen,isOpen}: IOpenModal) => {
             {errors.email && <ErrorInputMessage>{errors.email.message}</ErrorInputMessage>}
             <Input error={errors.password}    name={"password"} register ={register} placeholder={'qwerty'}  title={'Пароль'} parametrs ={{ required: true, maxLength: 80 }}  type={'text'}/>
             {errors.password && <ErrorInputMessage>Заполните  поле</ErrorInputMessage>}
-            <Button className={styles.btn} appearance='primary' type='submit'>Войти</Button>
+            <Button className={styles.btn} appearance='primary' type='submit'>{loading? 'Загрузка': 'Войти'}</Button>
         </form>
     </Modal>
   )

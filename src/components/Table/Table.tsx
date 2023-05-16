@@ -53,10 +53,12 @@ const Table = () => {
             <tr >
                 <th>Конструктив</th>
                 <th>Cторона	</th>
-                <th>По проекту</th>
-                <th>Выполнено</th>
-                <th>Остаток</th>
-                <th>Выполнено за день</th>
+                <th>По проекту, м</th>
+                <th>Выполнено, м</th>
+                <th>Остаток, м</th>
+                <th>{`Выполнено за ${new Date(new  Date().setDate(new Date().getDate()-1)).toLocaleString().substring(0,10)}, м`}</th>
+                <th>{`Выполнено за ${new  Date().toLocaleString().substring(0,10)}, м`}</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -69,10 +71,12 @@ const Table = () => {
                       {user && <VscChromeClose className={styles.icon} onClick={()=>deleteConstructive(item.id)}/>}
                       </th>
                       <td>Правая</td>
-                      <td><TableInput   initialValue={item.projectRight!} value1={`do/${item.id}`}  value2={'projectRight'} /></td>
-                      <td><TableInput   initialValue={item.doneRight!} value1={`do/${item.id}`}  value2={'doneRight'} /></td>
+                      <td><TableInput initialValue={item.projectRight!} value1={`do/${item.id}`}  value2={'projectRight'} /></td>
+                      <td><TableInput initialValue={item.doneRight!} value1={`do/${item.id}`}  value2={'doneRight'} /></td>
                       <td>{item.projectRight!-item.doneRight!}</td>
-                      <td>{item.restRight}</td>
+                      <td><TableInput initialValue={item.yesterdayRight!} value1={`do/${item.id}`} reset value3={item.todayRight!} value2={'yesterdayRight'} /></td>
+                      <td><TableInput initialValue={item.todayRight!} value1={`do/${item.id}`}  value3={'today'}  reset value2={'todayRight'} /></td>
+                    
                     </tr>
                     <tr key={index}>
                       <th></th>
@@ -80,7 +84,8 @@ const Table = () => {
                       <td><TableInput   initialValue={item.projectLeft!} value1={`do/${item.id}`}  value2={'projectLeft'} /></td>
                       <td><TableInput   initialValue={item.doneLeft!} value1={`do/${item.id}`}  value2={'doneLeft'} /></td>
                       <td>{item.projectLeft!-item.doneLeft!}</td>
-                      <td>{item.restLeft}</td>
+                      <td><TableInput initialValue={item.yesterdayLeft!} value1={`do/${item.id}`} reset value3={item.todayLeft!} value2={'yesterdayLeft'} /></td>
+                      <td><TableInput initialValue={item.todayLeft!} value1={`do/${item.id}`}  value3={'today'}  reset value2={'todayLeft'} /></td>
                     </tr>
                   </>: 
                     <tr key={index}>
@@ -90,7 +95,8 @@ const Table = () => {
                       <td><TableInput   initialValue={item.project!} value1={`do/${item.id}`}  value2={'project'} /></td>
                       <td><TableInput   initialValue={item.done!} value1={`do/${item.id}`}  value2={'done'} /></td>
                       <td>{item.project!-item.done!}</td>
-                      <td>{item.rest}</td>
+                      <td><TableInput initialValue={item.yesterday!} value1={`do/${item.id}`} reset value3={item.today!} value2={'yesterday'} /></td>
+                      <td><TableInput initialValue={item.today!} value1={`do/${item.id}`}  value3={'today'}  reset value2={'today'} /></td>
                     </tr>
               )
             })}

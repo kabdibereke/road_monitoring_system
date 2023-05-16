@@ -9,6 +9,7 @@ import { ref, remove } from 'firebase/database';
 import { toast } from 'react-toastify';
 import { auth, db } from '../../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { motion } from 'framer-motion';
 const ProjectCard = ({site}: {site: string}) => {
    //@ts-ignore
   const cyrillicToTranslit = new CyrillicToTranslit();
@@ -22,7 +23,10 @@ const ProjectCard = ({site}: {site: string}) => {
     })  
   }
   return (
-    <div className={styles.wrapper}>
+    <motion.div className={styles.wrapper}
+    initial={{ opacity: 0, scale: 0.5 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.2 }}>
         <p className={styles.title}>
         {site.length>2?  cyrillicToTranslit.reverse(site.substring(14).replace(/_/g, ' ')): cyrillicToTranslit.reverse(site)}
         </p>
@@ -31,7 +35,7 @@ const ProjectCard = ({site}: {site: string}) => {
         {user && <Button onClick={()=>setOpenModal(true)} appearance='ghost' > <BsTrash3/> </Button>}
        </div>
        <ConfirmDelete setIsOpen={setOpenModal} text={'Вы действительно хотите удалить данный участок'} isOpen={openModal} deleteGraphic={()=>deleteSite(site)}/>
-    </div>
+    </motion.div>
   )
 }
 

@@ -15,6 +15,7 @@ const ProjectPage = () => {
   const [openModal, setOpenModal] = useState(false);
   const [user] = useAuthState(auth);
   const {pathname} = useLocation()
+  const [isEmpty, setIsEmpty]= useState(false)
    //@ts-ignore
    const cyrillicToTranslit = new CyrillicToTranslit();
   return (
@@ -25,9 +26,9 @@ const ProjectPage = () => {
             Добавить Линейный график
         </Button>}
         <AddLineGraph setIsOpen={setOpenModal} isOpen={openModal}/>
-        <Graphic/>
-        <Table/>
-        <TableMaterial/>
+        <Graphic />
+        <Table  />
+        <TableMaterial  />
         <ToastContainer autoClose={500} closeOnClick={false} draggable={false}/>
     </div>
     

@@ -30,14 +30,14 @@ const AddConstructive = ({setIsOpen,isOpen}: IOpenModal) => {
                     projectRight: null,
                     doneLeft: null,
                     doneRight: null,
-                    restRight: null,
-                    restLeft: null,
-                    frontLeft: null,
-                    frontRight: null,
+                    todayRight: null,
+                    todayLeft: null,
+                    yesterdayLeft: null,
+                    yesterdayRight: null,
                     project:0,
                     done:  0,
-                    rest: 0,
-                    front:0 ,
+                    today: 0,
+                    yesterday:0 ,
                     type:'oneRoadway'
                 })
             }
@@ -49,14 +49,14 @@ const AddConstructive = ({setIsOpen,isOpen}: IOpenModal) => {
                     projectRight: 0,
                     doneLeft: 0,
                     doneRight: 0,
-                    restRight: 0,
-                    restLeft: 0,
-                    frontLeft: 0,
-                    frontRight: 0,
+                    todayRight: 0,
+                    todayLeft: 0,
+                    yesterdayLeft: 0,
+                    yesterdayRight: 0,
                     project: null,
                     done:  null,
-                    rest: null,
-                    front: null,
+                    today: null,
+                    yesterday:null ,
                     type:'twoRoadway'
                 })
             }

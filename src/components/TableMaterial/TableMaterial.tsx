@@ -55,9 +55,8 @@ const TableMaterial = () => {
                 <th>По проекту</th>
                 <th>Выполнено</th>
                 <th>Остаток</th>
-                <th>План на текущий год</th>
-                <th>Выполнено в текущем году</th>
-                <th>Выполнено за день</th>
+                <th>{`Выполнено за ${new Date(new  Date().setDate(new Date().getDate()-1)).toLocaleString().substring(0,10)}`}</th>
+                <th>{`Выполнено за ${new  Date().toLocaleString().substring(0,10)}`}</th>
             </tr>
         </thead>
         <tbody>
@@ -71,14 +70,12 @@ const TableMaterial = () => {
                   <td><TableInput   initialValue={item.done!} value1={`material/${item.id}`}  value2={'done'} /></td>
                   <td>{item.project!-item.done!}</td>
                   <td>
-                  <TableInput   initialValue={item.planOnYear!} value1={`material/${item.id}`}  value2={'planOnYear'} />
+                  <TableInput   initialValue={item.yesterday!} value1={`material/${item.id}`}  reset value3={item.today!} value2={'yesterday'} />
                   </td>
                   <td>
-                  <TableInput   initialValue={item.doneOnYear!} value1={`material/${item.id}`}  value2={'doneOnYear'} />
+                  <TableInput   initialValue={item.today!} value1={`material/${item.id}`}  reset value3={'today'}  value2={'today'} />
                    </td>
-                  <td>
-                  <TableInput   initialValue={item.doneOnDay!} value1={`material/${item.id}`}  value2={'doneOnDay'} />
-                   </td>
+    
                 </tr>
               )
             })}

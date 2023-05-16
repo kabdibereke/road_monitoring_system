@@ -35,7 +35,7 @@ const AddLineGraph = ({setIsOpen,isOpen}: IOpenModal) => {
       if(flag) {
         graphs.forEach(async (item,index)=> {
             for (let i=+data.initial; i<=+data.last; i++) {
-                await set(ref(db, `${pathname.substring(1)}/graph/` + id+'-'+data.nameGraph+ `/${index+item.name}`+ `/${i}`), {
+                await set(ref(db, `${pathname.substring(1)}/graph/` + id+'-'+data.nameGraph.replace(/[.#$\[\]\d]/g, "")+ `/${index+item.name}`+ `/${i}`), {
                     isDones:false,
                     num:i,
                     name: index+item.name
@@ -80,7 +80,7 @@ const AddLineGraph = ({setIsOpen,isOpen}: IOpenModal) => {
   return (
     <Modal setOpen={setIsOpen} open={isOpen}>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Input error={errors.nameGraph} name={"nameGraph"} register ={register} placeholder={'н.п: Правая сторона/Фрезерование и т.д.'}  title={'Наименования графика'} parametrs ={{ required: true, maxLength: 20 }}  type={'text'}/>
+            <Input error={errors.nameGraph} name={"nameGraph"} register ={register} placeholder={'н.п: Правая сторона/Фрезерование и т.д.'}  title={'Наименования графика'} parametrs ={{ required: true, maxLength: 90 }}  type={'text'}/>
             {errors.nameGraph && <ErrorInputMessage>Заполните  поле</ErrorInputMessage>}
             <Input   type="number" error={errors.initial} name={"initial"} register ={register} placeholder={'Вводить только цифры н.п:0'}  title={'Начальный ПК'} parametrs ={{ required: true, min: 0}}  />
             {errors.initial && <ErrorInputMessage>Заполните поле</ErrorInputMessage>}
