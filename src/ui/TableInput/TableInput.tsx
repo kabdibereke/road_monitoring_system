@@ -29,16 +29,17 @@ const TableInput = ({initialValue, value1, value2, value3=null, reset=false,...p
                     const currentHours = currentDate.getHours();
                     const currentMinutes = currentDate.getMinutes();
                     if (currentHours === 0 && currentMinutes === 0) {
-                        if(typeof value3 =='string') {
-                            update(ref(db, `${pathname.substring(1)}/${value1}`), {
-                                [value2]: 0
-                            });
-                        }
                         if(typeof value3 =='number') {
                             update(ref(db, `${pathname.substring(1)}/${value1}`), {
                                 [value2]: value3
                             });
                         }
+                        if(typeof value3 =='string') {
+                            update(ref(db, `${pathname.substring(1)}/${value1}`), {
+                                [value2]: 0
+                            });
+                        }
+                        
                     }
                   }, 1000); 
                   return () => clearInterval(interval); 
