@@ -22,7 +22,7 @@ const SignIn = ({setIsOpen,isOpen}: IOpenModal) => {
     const { register, formState: { errors }, handleSubmit,reset } = useForm<IFormInputs>();
  
     const onSubmit: SubmitHandler<IFormInputs> = async (data)=> {
-        await signInWithEmailAndPassword(data.email, data.password)
+        await signInWithEmailAndPassword(data.email.trim(), data.password.trim())
        
     }
     
