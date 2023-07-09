@@ -61,7 +61,8 @@ const TableMaterial = () => {
         </thead>
         <tbody>
             {materials.map((item,index)=> {
-              return (
+             if(index!==0) {
+                return (
                 <tr key={index}>
                   <th  className={styles.th}>{item.type}
                   {user && <VscChromeClose className={styles.icon} onClick={()=>deleteMaterial(item.id)}/>}</th>
@@ -78,6 +79,7 @@ const TableMaterial = () => {
     
                 </tr>
               )
+             }
             })}
         </tbody>
     </table>
