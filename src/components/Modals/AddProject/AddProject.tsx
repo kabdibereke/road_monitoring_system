@@ -24,9 +24,52 @@ const AddProject = ({setIsOpen,isOpen}: IOpenModal) => {
         let translit = cyrillicToTranslit.transform(data.nameProject.replace(/№/g,''),'_');
         try {
               await set(ref(db, `${id+"-"+translit}`), {
-                do:'',
-                graph:'',
-                material:''
+                do: {
+                  1111111111111: {
+                    id: 1111111111111,
+                    constructive: null,
+                    projectLeft: null,
+                    projectRight: null,
+                    doneLeft: null,
+                    doneRight: null,
+                    todayRight: null,
+                    todayLeft: null,
+                    yesterdayLeft: null,
+                    yesterdayRight: null,
+                    project: 0,
+                    done: 0,
+                    today: 0,
+                    yesterday: 0,
+                    type: 'oneRoadway',
+                  },
+                },
+                graph: {
+                  '1111111111111-Правая сторона': {
+                    '0ЩМА00': [
+                      {
+                        isDones: false,
+                        name: '0ЩМА00',
+                        num: 0,
+                      },
+                      {
+                        isDones: false,
+                        name: '0ЩМА00',
+                        num: 1,
+                      },
+                    ],
+                  },
+                },
+                material: {
+                  1111111111111: {
+                    id: 1111111111111,
+                    done: 0,
+                    today: 0,
+                    yesterday: 0,
+                    project: 0,
+                    type: 'unit',
+                    unit: 'currentUnit',
+                  },
+                },
               });
               setId(new Date().getTime())
               toast.success('Объект создан', {autoClose: 1000});
