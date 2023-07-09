@@ -63,7 +63,8 @@ const Table = () => {
         </thead>
         <tbody>
             {constructive.map((item,index)=> {
-              return (
+              if(index!==0) {
+                return (
                   item.type=='twoRoadway'? 
                   <>
                     <tr key={index}>
@@ -100,6 +101,7 @@ const Table = () => {
                     </tr>
               )
             })}
+              }
         </tbody>
     </table>
    </motion.div>
