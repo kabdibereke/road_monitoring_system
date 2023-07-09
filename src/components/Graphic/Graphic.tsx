@@ -38,7 +38,8 @@ const Graphic = () => {
   return (
     <>
     {graphic? Object.keys(graphic).map((main,index)=> {
-        return (
+        if(index!==0){
+		return (
             <motion.div key={index} className={styles.wrapper}
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -102,7 +103,8 @@ const Graphic = () => {
                     })}
                 </div>
                 <ConfirmDelete text={'Вы действительно хотите удалить данный график'} setIsOpen={setOpenModal} isOpen={openModal} deleteGraphic={()=>deleteGraphic(main)}/>
-            </motion.div>)}): ''}
+            </motion.div>)})
+	}: ''}
             
     </>
     
